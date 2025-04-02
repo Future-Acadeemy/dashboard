@@ -17,21 +17,21 @@ const useLogin = () => {
 
     try {
       const res = await axios.post(
-        "https://survey-backend.up.railway.app/api/auth/login",
+        "http://localhost:8080/api/auth/login",
         formData
       );
       setMessage(res.data.message);
       setUserInfo({ ...res.data.user, token: null }); // Save user info
       // "https://survey-backend.up.railway.app/api/auth/profile"
       const profile = await axios.get(
-        "https://survey-backend.up.railway.app/api/auth/profile",
+        "http://localhost:8080/api/auth/profile",
         {
           headers: { "x-user-phone": formData.phone }, // Replace with actual phone number
         }
       );
       const { _id, createdAt, updatedAt, __v, ...userData } = profile.data;
       setUserInfo(userData);
-      navigate("/personality");
+      navigate("/home");
     } catch (error) {
       setMessage(
         "Login failed: " + (error.response?.data?.message || error.message)
