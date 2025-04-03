@@ -8,7 +8,8 @@ export default function UserSurveys() {
   const { phone } = useParams(); // Extract phone from URL params
   const { data, isLoading, isError } = useUserSurveys(phone);
   const navigate = useNavigate();
-  const { updateScores, setResponse } = useNormalSurveyStore();
+  const { updateScores, setResponse, updateBigFiveScores } =
+    useNormalSurveyStore();
 
   //   setResponse();
   useEffect(() => {
@@ -34,13 +35,16 @@ export default function UserSurveys() {
           <div
             key={index}
             className="bg-white p-6 rounded-lg shadow-lg cursor-pointer hover:bg-blue-100 transition"
-            onClick={() => navigate(`/surveyDetail/${survey?.data?.name}`)}
           >
             <h3 className="text-2xl font-semibold text-gray-800">
               {survey?.data?.name || "Survey"}
             </h3>
             <button
-              onClick={() => navigate(`/surveyDetail/${survey?.data?.name}`)}
+              onClick={() => {
+                if (survey?.data?.name === "BigFive") {
+                  navigate("/bigFiveResult");
+                }
+              }}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
             >
               View Details

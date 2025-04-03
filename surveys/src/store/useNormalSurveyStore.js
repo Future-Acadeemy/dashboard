@@ -47,6 +47,20 @@ export const useNormalSurveyStore = create(
         set({ scores });
       },
 
+      updateBigFiveScores: ({ answers }) => {
+        const allAnswers = get().answers.questions;
+        console.log("ALL ANSWERS ->", allAnswers);
+
+        if (Object.keys(allAnswers).length === 0) {
+          console.error("No answers provided!");
+          return;
+        }
+
+        const scores = calculateBigFiveScores(allAnswers);
+        console.log("SCORES -> ", scores);
+        set({ scores });
+      },
+
       getSurveyData: () => {
         const { phone, answers, scores } = get();
         return { phone, answers, scores };
