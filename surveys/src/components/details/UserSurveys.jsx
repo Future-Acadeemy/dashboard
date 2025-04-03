@@ -43,6 +43,10 @@ export default function UserSurveys() {
               onClick={() => {
                 if (survey?.data?.name === "BigFive") {
                   navigate("/bigFiveResult");
+                } else if (survey?.data?.name === "MBTI") {
+                  navigate("/MBTIResult");
+                } else {
+                  navigate("/maslachResults");
                 }
               }}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"

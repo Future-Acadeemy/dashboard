@@ -15,6 +15,8 @@ import PersonalitySurvey from "./pages/PersonalitySurvey";
 import Login from "./pages/Login";
 import UserSurveys from "./components/details/UserSurveys";
 import BigFiveResult from "./components/details/BigFiveResult";
+import MbtiResult from "./components/details/MbtiResult";
+import MaslachResult from "./components/details/MaslachResult";
 const queryClient = new QueryClient(); // Create QueryClient instance
 
 const App = () => {
@@ -32,6 +34,8 @@ const App = () => {
           <Route path="/personality" element={<PersonalitySurvey />} />
           <Route path="/userSurvey/:phone" element={<UserSurveys />} />
           <Route path="/bigFiveResult" element={<BigFiveResult />} />
+          <Route path="/MBTIResult" element={<MbtiResult />} />
+          <Route path="/maslachResults" element={<MaslachResult />} />
         </Routes>
       </Router>
     </QueryClientProvider>
