@@ -8,7 +8,7 @@ export const useNormalSurveyStore = create(
       phone: "", // Store user phone number
       answers: {}, // Store answers in a sectioned format { "Section A": { "1": 5, "2": 0 }, "Section B": { "3": 4 } }
       scores: {}, // Store computed scores
-
+      responses: {},
       setPhone: (phone) => set({ phone }),
 
       setAnswer: (section, questionIndex, value) =>
@@ -24,6 +24,14 @@ export const useNormalSurveyStore = create(
           console.log("Updated Answers:", updatedAnswers); // Debugging
           return { answers: updatedAnswers };
         }),
+
+      setResponse: (endpoint, responseData) =>
+        set((state) => ({
+          responses: {
+            ...state.responses,
+            [endpoint]: responseData,
+          },
+        })),
 
       updateScores: () => {
         const allAnswers = get().answers.questions;

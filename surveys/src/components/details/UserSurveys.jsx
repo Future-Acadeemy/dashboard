@@ -1,25 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useUserSurveys from "../../hooks/useUserSurveys";
+import { useNavigate } from "react-router-dom";
+import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 
 export default function UserSurveys() {
-  const phoneNumber = "01090283565"; // Get dynamically if needed
-  const { data, isLoading, isError } = useUserSurveys(phoneNumber);
+  const { phone } = useParams(); // Extract phone from URL params
+  const { data, isLoading, isError } = useUserSurveys(phone);
+  const navigate = useNavigate();
+  const { updateScores, setResponse } = useNormalSurveyStore();
 
-  if (isLoading) return <div>Loading surveys...</div>;
-  if (isError) return <div>Error fetching surveys</div>;
+  //   setResponse();
+  useEffect(() => {
+    setResponse("bigFive", data[0]?.data);
+    setResponse("maslach", data[1]?.data);
+    setResponse("mbti", data[2]?.data);
+    //eslint-disable-next-line
+  }, []);
+
+  if (isLoading)
+    return <div className="text-lg text-gray-700">Loading surveys...</div>;
+  if (isError)
+    return <div className="text-lg text-red-600">Error fetching surveys</div>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">User Surveys</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <h2 className="text-4xl font-bold text-blue-700 mb-8 text-center">
+        Client Surveys
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-3xl">
         {data.map((survey, index) => (
-          <div key={index} className="border p-4 rounded-lg shadow-md bg-white">
-            <h3 className="text-lg font-semibold">
+          <div
+            key={index}
+            className="bg-white p-6 rounded-lg shadow-lg cursor-pointer hover:bg-blue-100 transition"
+            onClick={() => navigate(`/surveyDetail/${survey?.data?.name}`)}
+          >
+            <h3 className="text-2xl font-semibold text-gray-800">
               {survey?.data?.name || "Survey"}
             </h3>
-            <pre className="text-sm bg-gray-100 p-2 rounded">
-              {JSON.stringify(survey?.data, null, 2)}
-            </pre>
+            <button
+              onClick={() => navigate(`/surveyDetail/${survey?.data?.name}`)}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              View Details
+            </button>
           </div>
         ))}
       </div>

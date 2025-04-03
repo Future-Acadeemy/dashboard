@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/survey" element={<SurveyForm />} />
           <Route path="/report" element={<Report />} />
           <Route path="/personality" element={<PersonalitySurvey />} />
-          <Route path="/userSurvey" element={<UserSurveys />} />
+          <Route path="/userSurvey/:phone" element={<UserSurveys />} />
         </Routes>
       </Router>
     </QueryClientProvider>
