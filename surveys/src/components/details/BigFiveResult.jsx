@@ -1,5 +1,4 @@
 import React from "react";
-import { interpretScore } from "../../services/Services";
 import { useNavigate } from "react-router-dom";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 
@@ -13,7 +12,6 @@ const traitDescriptions = {
 };
 
 const BigFiveResult = () => {
-  //   const { scores } = useNormalSurveyStore(); // Use the correct store
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
 
@@ -21,19 +19,24 @@ const BigFiveResult = () => {
   console.log("scoress from bg===> ", scores);
 
   return (
-    <div className="p-4 bg-white shadow rounded">
-      <h2 className="font-bold text-lg mb-4">Results</h2>
+    <div className="p-6 bg-white shadow-lg rounded-lg max-w-2xl mx-auto">
+      <h2 className="font-bold text-2xl mb-6 text-center">
+        Your Big Five Personality Results
+      </h2>
       {Object.entries(scores).map(([section, score]) => (
-        <div key={section} className="mb-4 p-4 border rounded">
-          <p className="text-gray-700">
-            Score: <span className="font-semibold">{score}</span>
+        <div
+          key={section}
+          className="mb-6 p-5 bg-gray-100 border rounded-lg shadow-md"
+        >
+          <p className="text-xl font-bold text-blue-600">
+            Score: <span>{score}</span>
           </p>
-          <p className="text-gray-600 italic">{traitDescriptions[section]}</p>
+          <p className="text-gray-700 italic">{traitDescriptions[section]}</p>
         </div>
       ))}
-      <div className="flex space-x-4">
+      <div className="flex justify-center">
         <button
-          className="mt-4 bg-gray-500 text-white px-8 py-4 rounded text-lg"
+          className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300"
           onClick={() => navigate("/home")}
         >
           Back to Home Page
