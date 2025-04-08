@@ -10,7 +10,7 @@ const fetchSurveyData = async (url) => {
 
 export default function useUserSurveys(phoneNumber) {
   const endpoints = [
-    `http://localhost:8080/api/bigfive/${phoneNumber}`,
+    // `http://localhost:8080/api/bigfive/${phoneNumber}`,
     `http://localhost:8080/api/machlan/${phoneNumber}`,
     `http://localhost:8080/api/mbti/${phoneNumber}`,
   ];

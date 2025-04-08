@@ -5,6 +5,7 @@ import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 const MaslachResult = () => {
   //   const { answers, scores } = useSurveyStore();
   const { responses } = useNormalSurveyStore();
+  console.log("responses --> ", responses);
   const scores = responses.maslach?.scores;
 
   return (
