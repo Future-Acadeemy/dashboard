@@ -15,7 +15,9 @@ const BigFiveResult = () => {
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
 
-  const scores = responses.bigFive.scores;
+  console.log("scoress from bg===> ", responses);
+
+  const scores = responses.BigFive?.scores;
   console.log("scoress from bg===> ", scores);
 
   return (

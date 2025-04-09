@@ -24,7 +24,7 @@ const useLogin = () => {
       setUserInfo({ ...res.data.user, token: null }); // Save user info
       // "https://survey-backend.up.railway.app/api/auth/profile"
       const profile = await axios.get(
-        "http://localhost:8080/api/auth/profile",
+        "https://survey-backend.up.railway.app/api/auth/profile",
         {
           headers: { "x-user-phone": formData.phone }, // Replace with actual phone number
         }

@@ -6,7 +6,7 @@ const MaslachResult = () => {
   //   const { answers, scores } = useSurveyStore();
   const { responses } = useNormalSurveyStore();
   console.log("responses --> ", responses);
-  const scores = responses.maslach?.scores;
+  const scores = responses.Maslach?.scores;
 
   return (
     <div className="p-8 bg-white shadow-lg rounded-lg max-w-4xl mx-auto mt-10">

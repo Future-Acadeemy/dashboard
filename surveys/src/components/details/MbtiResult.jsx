@@ -17,7 +17,7 @@ const traitDescriptions = {
 const MbtiResult = () => {
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
-  const scores = responses.mbti.scores;
+  const scores = responses.MBTI.scores;
   console.log("scores from mbti --> ", scores);
 
   const personalityType = Object.keys(scores).join("");

@@ -12,7 +12,7 @@ const Home = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/auth/users"
+          "https://survey-backend.up.railway.app/api/auth/users"
         ); // Adjust API URL as needed
         setUsers(response.data);
       } catch (err) {
@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
       <h1 className="text-4xl font-bold text-blue-700 mb-8 text-center">
-        Select a Survey
+        Select a User
       </h1>
 
       {loading && <p className="text-lg text-gray-700">Loading users...</p>}
