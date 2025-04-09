@@ -8,7 +8,7 @@ export const useNormalSurveyStore = create(
       phone: "", // Store user phone number
       answers: {}, // Store answers in a sectioned format { "Section A": { "1": 5, "2": 0 }, "Section B": { "3": 4 } }
       scores: {}, // Store computed scores
-
+      responses: {},
       setPhone: (phone) => set({ phone }),
 
       setAnswer: (section, questionIndex, value) =>
@@ -25,7 +25,29 @@ export const useNormalSurveyStore = create(
           return { answers: updatedAnswers };
         }),
 
+      setResponse: (endpoint, responseData) =>
+        set((state) => ({
+          responses: {
+            ...state.responses,
+            [endpoint]: responseData,
+          },
+        })),
+
       updateScores: () => {
+        const allAnswers = get().answers.questions;
+        console.log("ALL ANSWERS ->", allAnswers);
+
+        if (Object.keys(allAnswers).length === 0) {
+          console.error("No answers provided!");
+          return;
+        }
+
+        const scores = calculateBigFiveScores(allAnswers);
+        console.log("SCORES -> ", scores);
+        set({ scores });
+      },
+
+      updateBigFiveScores: ({ answers }) => {
         const allAnswers = get().answers.questions;
         console.log("ALL ANSWERS ->", allAnswers);
 

@@ -17,7 +17,7 @@ const useLogin = () => {
 
     try {
       const res = await axios.post(
-        "https://survey-backend.up.railway.app/api/auth/login",
+        "http://localhost:8080/api/auth/login",
         formData
       );
       setMessage(res.data.message);
@@ -31,7 +31,7 @@ const useLogin = () => {
       );
       const { _id, createdAt, updatedAt, __v, ...userData } = profile.data;
       setUserInfo(userData);
-      navigate("/personality");
+      navigate("/home");
     } catch (error) {
       setMessage(
         "Login failed: " + (error.response?.data?.message || error.message)
