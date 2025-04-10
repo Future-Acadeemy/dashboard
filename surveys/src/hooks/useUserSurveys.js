@@ -16,7 +16,7 @@ export default function useUserSurveys(phoneNumber) {
     `https://survey-backend.up.railway.app/api/bigfive/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/machlan/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/mbti/${phoneNumber}`,
-    `https://survey-backend.up.railway.app/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/competency/${phoneNumber}`,
   ];
 
   const results = useQueries({
