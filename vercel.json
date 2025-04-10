@@ -6,6 +6,5 @@
       "config": { "outputDirectory": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "surveys/$1" }],
-  "installCommand": "cd surveys && npm install --legacy-peer-deps"
+  "routes": [{ "src": "/(.*)", "dest": "surveys/$1" }]
 }
