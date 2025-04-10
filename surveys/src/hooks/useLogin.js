@@ -17,7 +17,7 @@ const useLogin = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "https://survey-backend.up.railway.app/api/auth/login",
         formData
       );
       setMessage(res.data.message);
