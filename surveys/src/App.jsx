@@ -17,6 +17,7 @@ import UserSurveys from "./components/details/UserSurveys";
 import BigFiveResult from "./components/details/BigFiveResult";
 import MbtiResult from "./components/details/MbtiResult";
 import MaslachResult from "./components/details/MaslachResult";
+import CompetencyResult from "./components/details/CompetencyResult";
 const queryClient = new QueryClient(); // Create QueryClient instance
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/bigFiveResult" element={<BigFiveResult />} />
           <Route path="/MBTIResult" element={<MbtiResult />} />
           <Route path="/maslachResults" element={<MaslachResult />} />
+          <Route path="/competencyResult" element={<CompetencyResult />} />
         </Routes>
       </Router>
     </QueryClientProvider>
