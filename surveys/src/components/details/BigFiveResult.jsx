@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useTranslation } from "react-i18next";
+import Layout from "../../layout/Layout";
 
 // Personality trait descriptions
 const traitDescriptions = {
@@ -13,6 +15,7 @@ const traitDescriptions = {
 
 const BigFiveResult = () => {
   const { name } = useParams();
+  const { t, i18n } = useTranslation();
 
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
@@ -23,33 +26,29 @@ const BigFiveResult = () => {
   console.log("scoress from bg===> ", scores);
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-lg max-w-2xl mx-auto">
-      <h2 className="font-bold text-2xl mb-6 text-center">
-        Your Big Five Personality Results
-      </h2>
-      <p className="text-center text-lg text-gray-700 mb-10">
-        Report for <span className="font-semibold">{name}</span>
-      </p>
-      {Object.entries(scores).map(([section, score]) => (
-        <div
-          key={section}
-          className="mb-6 p-5 bg-gray-100 border rounded-lg shadow-md"
-        >
-          <p className="text-xl font-bold text-blue-600">
-            Score: <span>{score}</span>
-          </p>
-          <p className="text-gray-700 italic">{traitDescriptions[section]}</p>
-        </div>
-      ))}
-      <div className="flex justify-center">
-        <button
-          className="mt-6 bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300"
-          onClick={() => navigate("/home")}
-        >
-          Back to Home Page
-        </button>
+    <Layout>
+      <div className="p-6 bg-white shadow-lg rounded-lg max-w-2xl mx-auto">
+        <h2 className="font-bold text-2xl mb-6 text-center">
+          {t("Your Big Five Personality Results")}
+        </h2>
+        <p className="text-center text-lg text-gray-700 mb-10">
+          {t("Report for")} <span className="font-semibold">{name}</span>
+        </p>
+        {Object.entries(scores).map(([section, score]) => (
+          <div
+            key={section}
+            className="mb-6 p-5 bg-gray-100 border rounded-lg shadow-md"
+          >
+            <p className="text-xl font-bold text-blue-600">
+              {t("Score")}: <span>{t(score)}</span>
+            </p>
+            <p className="text-gray-700 italic">
+              {t(traitDescriptions[section])}
+            </p>
+          </div>
+        ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 

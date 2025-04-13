@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { MBTI_interpretations } from "../../data/inputs";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useTranslation } from "react-i18next";
+import Layout from "../../layout/Layout";
 
 const traitDescriptions = {
   E: "Extroversion (E) is the personality trait of seeking fulfillment from sources outside the self or in community. High scorers tend to be very social, while low scorers prefer to work on their projects alone.",
@@ -16,6 +18,7 @@ const traitDescriptions = {
 
 const MbtiResult = () => {
   const { name } = useParams();
+  const { t, i18n } = useTranslation();
 
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
@@ -29,43 +32,49 @@ const MbtiResult = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 p-6 bg-gray-100">
-      <div className="bg-white shadow-xl rounded-4xl p-8 max-w-3xl w-full">
-        <h2 className="text-center text-3xl font-extrabold text-gray-900">
-          Your Personality Type
-        </h2>
-        <p className="text-center text-lg text-gray-700 mb-10">
-          Report for <span className="font-semibold">{name}</span>
-        </p>
-        <div className="mt-4 text-center text-4xl font-bold text-blue-600">
-          {personalityType}
+    <Layout>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 p-6 bg-gray-100">
+        <div className="bg-white shadow-xl rounded-4xl p-8 max-w-3xl w-full">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+            {t("Your Personality Type")}
+          </h2>
+          <p className="text-center text-lg text-gray-700 mb-10">
+            {t("Report for")} <span className="font-semibold">{name}</span>
+          </p>
+          <div className="mt-4 text-center text-4xl font-bold text-blue-600">
+            {personalityType}
+          </div>
+
+          <h3 className="mt-6 text-xl font-semibold text-gray-800 text-center">
+            {t(personalityData.title)}
+          </h3>
+          <p className="text-gray-600 italic text-center px-6">
+            {t(personalityData.description)}
+          </p>
+
+          <h3 className="mt-8 text-xl font-semibold text-gray-800">
+            {t("All Traits")}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            {Object.entries(scores).map(([trait, score]) => (
+              <div
+                key={trait}
+                className="p-4 border-0 rounded-lg bg-gray-50 shadow-md "
+              >
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {trait}: <span className="text-blue-500">{score}</span>
+                </h3>
+                <p className="text-gray-600 italic">
+                  {t(traitDescriptions[trait])}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-6"></div>
         </div>
-
-        <h3 className="mt-6 text-xl font-semibold text-gray-800 text-center">
-          {personalityData.title}
-        </h3>
-        <p className="text-gray-600 italic text-center px-6">
-          {personalityData.description}
-        </p>
-
-        <h3 className="mt-8 text-xl font-semibold text-gray-800">All Traits</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          {Object.entries(scores).map(([trait, score]) => (
-            <div
-              key={trait}
-              className="p-4 border-0 rounded-lg bg-gray-50 shadow-md "
-            >
-              <h3 className="text-lg font-semibold text-gray-800">
-                {trait}: <span className="text-blue-500">{score}</span>
-              </h3>
-              <p className="text-gray-600 italic">{traitDescriptions[trait]}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-6"></div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
