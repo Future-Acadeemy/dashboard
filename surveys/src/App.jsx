@@ -34,10 +34,13 @@ const App = () => {
           <Route path="/report" element={<Report />} />
           <Route path="/personality" element={<PersonalitySurvey />} />
           <Route path="/userSurvey/:phone" element={<UserSurveys />} />
-          <Route path="/bigFiveResult" element={<BigFiveResult />} />
-          <Route path="/MBTIResult" element={<MbtiResult />} />
-          <Route path="/maslachResults" element={<MaslachResult />} />
-          <Route path="/competencyResult" element={<CompetencyResult />} />
+          <Route path="/bigFiveResult/:name" element={<BigFiveResult />} />
+          <Route path="/MBTIResult/:name" element={<MbtiResult />} />
+          <Route path="/maslachResults/:name" element={<MaslachResult />} />
+          <Route
+            path="/competencyResult/:name"
+            element={<CompetencyResult />}
+          />
         </Routes>
       </Router>
     </QueryClientProvider>

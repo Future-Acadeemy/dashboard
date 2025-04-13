@@ -1,9 +1,12 @@
 import React from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useParams } from "react-router-dom";
 
 const CompetencyResult = () => {
+  const { name } = useParams();
   const totals = useNormalSurveyStore().responses.Competency?.totals;
+  // const client = findUserByPhone(clients,)
 
   if (!totals) {
     return (
@@ -18,6 +21,10 @@ const CompetencyResult = () => {
       <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-blue-700 mb-12">
         Competency Gap Analysis
       </h2>
+
+      <p className="text-center text-lg text-gray-700 mb-10">
+        Report for <span className="font-semibold">{name}</span>
+      </p>
 
       {Object.entries(totals).map(([category, subCompetencies]) => (
         <div key={category} className="mb-12">

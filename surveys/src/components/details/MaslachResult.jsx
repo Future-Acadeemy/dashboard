@@ -1,9 +1,12 @@
 import React from "react";
 import { interpretScore } from "../../services/Services";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useParams } from "react-router-dom";
 
 const MaslachResult = () => {
   //   const { answers, scores } = useSurveyStore();
+  const { name } = useParams();
+
   const { responses } = useNormalSurveyStore();
   console.log("responses --> ", responses);
   const scores = responses.Maslach?.scores;
@@ -13,6 +16,9 @@ const MaslachResult = () => {
       <h2 className="font-bold text-2xl text-gray-800 text-center mb-6">
         Results
       </h2>
+      <p className="text-center text-lg text-gray-700 mb-10">
+        Report for <span className="font-semibold">{name}</span>
+      </p>
 
       <div className="mt-6 rounded-lg p-4 bg-gray-50">
         <ul className="mt-2 space-y-2">

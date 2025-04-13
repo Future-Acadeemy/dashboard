@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 
 // Personality trait descriptions
@@ -12,6 +12,8 @@ const traitDescriptions = {
 };
 
 const BigFiveResult = () => {
+  const { name } = useParams();
+
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
 
@@ -25,6 +27,9 @@ const BigFiveResult = () => {
       <h2 className="font-bold text-2xl mb-6 text-center">
         Your Big Five Personality Results
       </h2>
+      <p className="text-center text-lg text-gray-700 mb-10">
+        Report for <span className="font-semibold">{name}</span>
+      </p>
       {Object.entries(scores).map(([section, score]) => (
         <div
           key={section}

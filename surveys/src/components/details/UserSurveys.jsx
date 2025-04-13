@@ -2,12 +2,16 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useUserSurveys from "../../hooks/useUserSurveys";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useUserStore } from "../../store/useUserStore";
+import useClientsStore from "../../store/useClientsStore";
 
 export default function UserSurveys() {
   const { phone } = useParams();
   const { isLoading, isError } = useUserSurveys(phone);
   const navigate = useNavigate();
   const { responses } = useNormalSurveyStore();
+  const name = useUserStore().name;
+  const { clients } = useClientsStore();
 
   if (isLoading)
     return <div className="text-lg text-gray-700">Loading surveys...</div>;
@@ -18,12 +22,19 @@ export default function UserSurveys() {
     ([_, surveyData]) => surveyData?.phone === phone
   );
 
+  function findUserByPhone(clients, phoneNumber) {
+    return clients.find((user) => user.phone === phoneNumber);
+  }
+
+  const client = findUserByPhone(clients, phone);
+  console.log("clientttt --> ", client.name);
+
   console.log("filteredResponses --> ", filteredResponses);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
       <h2 className="text-4xl font-bold text-blue-700 mb-8 text-center">
-        Client Surveys
+        {client.name}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-3xl">
@@ -40,13 +51,13 @@ export default function UserSurveys() {
                 console.log("surveyData?.name --> ", surveyData?.name);
                 if (surveyData?.name === "BigFive") {
                   console.log("hhh");
-                  navigate("/bigFiveResult");
+                  navigate(`/bigFiveResult/${client.name}`);
                 } else if (surveyData?.name === "MBTI") {
-                  navigate("/MBTIResult");
+                  navigate(`/MBTIResult/${client.name}`);
                 } else if (surveyData?.name === "Maslach") {
-                  navigate("/maslachResults");
+                  navigate(`/maslachResults/${client.name}`);
                 } else {
-                  navigate("/competencyResult");
+                  navigate(`/competencyResult/${client.name}`);
                 }
               }}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
