@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MBTI_interpretations } from "../../data/inputs";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 
@@ -15,6 +15,8 @@ const traitDescriptions = {
 };
 
 const MbtiResult = () => {
+  const { name } = useParams();
+
   const { responses } = useNormalSurveyStore();
   const navigate = useNavigate();
   const scores = responses.MBTI.scores;
@@ -32,7 +34,9 @@ const MbtiResult = () => {
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
           Your Personality Type
         </h2>
-
+        <p className="text-center text-lg text-gray-700 mb-10">
+          Report for <span className="font-semibold">{name}</span>
+        </p>
         <div className="mt-4 text-center text-4xl font-bold text-blue-600">
           {personalityType}
         </div>

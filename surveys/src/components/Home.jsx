@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useClientsStore from "../store/useClientsStore";
 
 const Home = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { clients, setClients } = useClientsStore();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -15,6 +17,7 @@ const Home = () => {
           "https://survey-backend.up.railway.app/api/auth/users"
         ); // Adjust API URL as needed
         setUsers(response.data);
+        setClients(response.data);
       } catch (err) {
         setError("Failed to load users");
       } finally {
@@ -23,6 +26,7 @@ const Home = () => {
     };
 
     fetchUsers();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -35,7 +39,7 @@ const Home = () => {
       {error && <p className="text-lg text-red-600">{error}</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-        {users.map((user) => (
+        {clients.map((user) => (
           <div
             key={user._id}
             className="bg-white p-6 rounded-lg shadow-lg cursor-pointer hover:bg-blue-100 transition"

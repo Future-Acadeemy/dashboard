@@ -78,3 +78,7 @@ export const calculateBigFiveScores = (answers) => {
       answers[50],
   };
 };
+
+export function findUserByPhone(clients, phoneNumber) {
+  return clients.find((user) => user.phone === phoneNumber);
+}
