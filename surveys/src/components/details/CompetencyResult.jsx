@@ -57,7 +57,7 @@ const CompetencyResult = () => {
                   <tbody>
                     {Object.entries(subCompetencies).map(
                       ([sub, values], idx) => {
-                        const gap = values.need - values.possess;
+                        const gap = values.possess - values.need;
                         const isPositive = gap >= 0;
                         const rowBg = idx % 2 === 0 ? "bg-white" : "bg-gray-50";
 
