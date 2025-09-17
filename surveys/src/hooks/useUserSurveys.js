@@ -10,13 +10,20 @@ const fetchSurveyData = async (url) => {
 
 export default function useUserSurveys(phoneNumber) {
   const { setResponse } = useNormalSurveyStore();
-
   const types = ["bigFive", "maslach", "mbti"];
+  //patterns
   const endpoints = [
     `https://survey-backend.up.railway.app/api/bigfive/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/machlan/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/mbti/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/competency/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/teamwork/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/stress/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/personal-competency/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/leadership/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/patterns/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/holland/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/cds/${phoneNumber}`,
   ];
 
   const results = useQueries({
