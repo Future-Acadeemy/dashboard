@@ -41,7 +41,10 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
         {/* {clients.map((user) => ( */}
         {clients
-          // .filter((user) => user.job === "Central Finance Department")
+          .filter((user) => {
+            const cutoffDate = new Date("2025-09-15T00:00:00Z"); // 15/09/2025
+            return new Date(user.createdAt) > cutoffDate;
+          })
           .map((user) => (
             <div
               key={user._id}

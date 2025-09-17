@@ -18,8 +18,17 @@ import BigFiveResult from "./components/details/BigFiveResult";
 import MbtiResult from "./components/details/MbtiResult";
 import MaslachResult from "./components/details/MaslachResult";
 import CompetencyResult from "./components/details/CompetencyResult";
+import TeamworkResult from "./components/details/TeamworkResult";
+import StressResult from "./components/details/StressResults";
+import PResult from "./components/details/PResult";
+import LeadershipResult from "./components/details/LeadershipResult";
+import PatternResult from "./components/details/PatternResult";
+import HollandResult from "./components/details/HollandResult";
+import CdsResult from "./components/details/CdsResult";
 const queryClient = new QueryClient(); // Create QueryClient instance
-
+//personal-competency
+//patterns
+//holland
 const App = () => {
   const [userInfo, setUserInfo] = useState(null);
 
@@ -37,10 +46,17 @@ const App = () => {
           <Route path="/bigFiveResult/:name" element={<BigFiveResult />} />
           <Route path="/MBTIResult/:name" element={<MbtiResult />} />
           <Route path="/maslachResults/:name" element={<MaslachResult />} />
+          <Route path="/teamwork/:name" element={<TeamworkResult />} />{" "}
+          <Route path="/stress/:name" element={<StressResult />} />
           <Route
             path="/competencyResult/:name"
             element={<CompetencyResult />}
           />
+          <Route path="/personal-competency/:name" element={<PResult />} />\{" "}
+          <Route path="/leadership/:name" element={<LeadershipResult />} />
+          <Route path="/patterns/:name" element={<PatternResult />} />
+          <Route path="/holland/:name" element={<HollandResult />} />
+          <Route path="/cds/:name" element={<CdsResult />} />
         </Routes>
       </Router>
     </QueryClientProvider>

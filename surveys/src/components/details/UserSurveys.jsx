@@ -58,8 +58,22 @@ export default function UserSurveys() {
                     navigate(`/MBTIResult/${client.name}`);
                   } else if (surveyData?.name === "Maslach") {
                     navigate(`/maslachResults/${client.name}`);
-                  } else {
+                  } else if (surveyData?.name === "Competency") {
                     navigate(`/competencyResult/${client.name}`);
+                  } else if (surveyData?.name === "work_Stress") {
+                    navigate(`/stress/${client.name}`);
+                  } else if (surveyData?.name === "personal_Competency") {
+                    navigate(`/personal-competency/${client.name}`);
+                  } else if (surveyData?.name === "leadership") {
+                    navigate(`/leadership/${client.name}`);
+                  } else if (surveyData?.name === "pattern_scale") {
+                    navigate(`/patterns/${client.name}`);
+                  } else if (surveyData?.name === "holland") {
+                    navigate(`/holland/${client.name}`);
+                  } else if (surveyData?.name === "cds") {
+                    navigate(`/cds/${client.name}`);
+                  } else {
+                    navigate(`/teamwork/${client.name}`);
                   }
                 }}
                 className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
