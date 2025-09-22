@@ -17,7 +17,7 @@ export default function useUserSurveys(phoneNumber) {
     `https://survey-backend.up.railway.app/api/machlan/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/mbti/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/competency/${phoneNumber}`,
-    `http://localhost:8080/api/teamwork/${phoneNumber}`,
+    `https://survey-backend.up.railway.app/api/teamwork/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/stress/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/personal-competency/${phoneNumber}`,
     `https://survey-backend.up.railway.app/api/leadership/${phoneNumber}`,
