@@ -23,10 +23,10 @@ const sectionColors = {
 };
 
 const classifyScore = (score) => {
-  if (score >= 10 && score <= 20) return "Weak";
-  if (score > 20 && score <= 30) return "Below Average";
-  if (score > 30 && score <= 40) return "Above Average";
-  if (score > 40 && score <= 50) return "High";
+  if (score >= 10 && score <= 20) return "ضعيف";
+  if (score > 20 && score <= 30) return "اقل من المتوسط";
+  if (score > 30 && score <= 40) return "اعلى من المتوسط";
+  if (score > 40 && score <= 50) return "مرتفع";
   return "Out of Range";
 };
 
