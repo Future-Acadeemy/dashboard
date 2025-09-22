@@ -4,28 +4,14 @@ import { useUserStore } from "../../store/useUserStore";
 import { useTranslation } from "react-i18next";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 import Layout from "../../layout/Layout";
+import { useParams } from "react-router-dom";
 
 const interpretations = {
-  A: {
-    High: "Decision making skills",
-    Low: "Decision making skills",
-  },
-  B: {
-    High: "Communication Skills",
-    Low: "Communication Skills",
-  },
-  C: {
-    High: "Motivation Skills",
-    Low: "Motivation Skills",
-  },
-  D: {
-    High: "Conflict Management Skills",
-    Low: "Conflict Management Skills",
-  },
-  E: {
-    High: "Meeting Management Skills",
-    Low: "Meeting Management Skills",
-  },
+  A: "Decision making skills",
+  B: "Communication Skills",
+  C: "Motivation Skills",
+  D: "Conflict Management Skills",
+  E: "Meeting Management Skills",
 };
 
 const sectionColors = {
@@ -36,17 +22,21 @@ const sectionColors = {
   E: "bg-pink-50 text-pink-800",
 };
 
+const classifyScore = (score) => {
+  if (score >= 10 && score <= 20) return "Weak";
+  if (score > 20 && score <= 30) return "Below Average";
+  if (score > 30 && score <= 40) return "Above Average";
+  if (score > 40 && score <= 50) return "High";
+  return "Out of Range";
+};
+
 const TeamworkResult = () => {
   const user = useUserStore((state) => state);
   const { t } = useTranslation();
+  const { name } = useParams();
 
   const { responses } = useNormalSurveyStore();
   const scores = responses.teamwork.scores;
-
-  const interpretScore = (section, score) => {
-    const level = score > 30 ? "High" : "Low";
-    return interpretations[section]?.[level] || "";
-  };
 
   return (
     <Layout>
@@ -54,24 +44,30 @@ const TeamworkResult = () => {
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
           {t("Results")}
         </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {Object.entries(scores).map(([section, { score, level }]) => (
-            <div
-              key={section}
-              className={`p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition ${sectionColors[section]}`}
-            >
-              <h3 className="font-bold text-lg mb-2">
-                {t("Section")} {t(section)}
-              </h3>
-              <p className="text-xs opacity-90 leading-relaxed">
-                {t(interpretScore(section, score))}
-              </p>
-              <p className="text-sm mb-1">
-                <span className="font-semibold">{t("Score")}:</span> {score} (
-                {level})
-              </p>
-            </div>
-          ))}
+        <p className="text-center text-lg text-gray-700 mb-10">
+          {t("Report for")} <span className="font-semibold">{name}</span>
+        </p>
+        <div className="grid gap-6 md:grid-cols-2 mt-6">
+          {Object.entries(scores).map(([section, { score }]) => {
+            const classification = classifyScore(score);
+            return (
+              <div
+                key={section}
+                className={`p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition ${sectionColors[section]}`}
+              >
+                <h3 className="font-bold text-lg mb-2">
+                  {t("Section")} {t(section)}
+                </h3>
+                <p className="text-xs opacity-90 leading-relaxed">
+                  {t(interpretations[section])}
+                </p>
+                <p className="text-sm mb-1">
+                  <span className="font-semibold">{t("Score")}:</span> {score} (
+                  {t(classification)})
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </Layout>
