@@ -12,7 +12,7 @@ const skillColors = {
 
 const CdsResult = () => {
   const { responses } = useNormalSurveyStore();
-  const scores = responses.holland.scores;
+  const scores = responses.cds.scores;
   const { t } = useTranslation();
 
   return (
