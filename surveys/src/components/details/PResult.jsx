@@ -3,6 +3,7 @@ import { useSurveyStore } from "../../store/useSurveyStore";
 import { useTranslation } from "react-i18next";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 import Layout from "../../layout/Layout";
+import { useParams } from "react-router-dom";
 
 const sectionToSkill = {
   linguistic: "Linguistic Skills",
@@ -26,9 +27,11 @@ const sectionColors = {
 
 const PResult = () => {
   const { t } = useTranslation();
+  const { name } = useParams();
 
   const { responses } = useNormalSurveyStore();
   const scores = responses.personal_Competency.scores;
+  const surveyName = responses.personal_Competency.name;
 
   return (
     <Layout>
@@ -36,7 +39,12 @@ const PResult = () => {
         <h2 className="text-3xl font-bold mb-8 text-blue-800 text-center">
           {t("Your Survey Results")}
         </h2>
-
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+          <span className="font-semibold">مقياس الجدارات الشخصية</span>
+        </h2>
+        <p className="text-center text-lg text-gray-700 mb-10">
+          {t("Report for")} <span className="font-semibold">{name}</span>
+        </p>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Object.entries(scores).map(([section, { score, level }]) => (
             <div

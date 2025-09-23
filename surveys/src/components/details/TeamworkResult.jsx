@@ -37,12 +37,15 @@ const TeamworkResult = () => {
 
   const { responses } = useNormalSurveyStore();
   const scores = responses.teamwork.scores;
-
+  const surveyName = responses.teamwork.name;
   return (
     <Layout>
       <div className="p-6 bg-white shadow-xl rounded-2xl">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-          {t("Results")}
+          {t("Results")}{" "}
+        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+          <span className="font-semibold">مقياس مهارات إدارة فرق العمل</span>
         </h2>
         <p className="text-center text-lg text-gray-700 mb-10">
           {t("Report for")} <span className="font-semibold">{name}</span>
