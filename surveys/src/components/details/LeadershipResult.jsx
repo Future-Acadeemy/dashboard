@@ -4,6 +4,7 @@ import { useUserStore } from "../../store/useUserStore";
 import { useTranslation } from "react-i18next";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
 import Layout from "../../layout/Layout";
+import { useParams } from "react-router-dom";
 
 const sectionToSkill = {
   A: "Decision Making Skills",
@@ -26,6 +27,7 @@ const LeadershipResult = () => {
   const scores = responses.leadership.scores;
   const user = useUserStore((state) => state);
   const { t } = useTranslation();
+  const { name } = useParams();
 
   return (
     <Layout>
@@ -33,6 +35,12 @@ const LeadershipResult = () => {
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
           {t("Results")}
         </h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+          <span className="font-semibold">مقياس الخصال القيادية</span>
+        </h2>
+        <p className="text-center text-lg text-gray-700 mb-10">
+          {t("Report for")} <span className="font-semibold">{name}</span>
+        </p>
         <div className="grid gap-6 md:grid-cols-2">
           {Object.entries(scores).map(([section, { score, level }]) => (
             <div

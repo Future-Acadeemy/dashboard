@@ -30,6 +30,9 @@ const StressResult = () => {
       <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
         {t("النتائج")}
       </h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+        <span className="font-semibold">مقياس الضغوط المهنية</span>
+      </h2>
       <p className="text-center text-lg text-gray-700 mb-10">
         {t("التقرير الخاص بـ")} <span className="font-semibold">{name}</span>
       </p>

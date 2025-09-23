@@ -31,7 +31,6 @@ const PResult = () => {
 
   const { responses } = useNormalSurveyStore();
   const scores = responses.personal_Competency.scores;
-  const surveyName = responses.personal_Competency.name;
 
   return (
     <Layout>
