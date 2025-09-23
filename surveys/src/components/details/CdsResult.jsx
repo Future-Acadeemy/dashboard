@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNormalSurveyStore } from "../../store/useNormalSurveyStore";
+import { useParams } from "react-router-dom";
 
 const skillColors = {
   "النقد الذاتي": "bg-blue-50 text-blue-800",
@@ -14,12 +15,16 @@ const CdsResult = () => {
   const { responses } = useNormalSurveyStore();
   const scores = responses.cds.scores;
   const { t } = useTranslation();
+  const { name } = useParams();
 
   return (
     <div className="p-6 bg-white shadow-xl rounded-2xl">
       <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
         {t("نتائج مقياس التشوهات المعرفية")}
       </h2>
+      <p className="text-center text-lg text-gray-700 mb-10">
+        {t("Report for")} <span className="font-semibold">{name}</span>
+      </p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Object.entries(scores).map(([skill, { score, level }]) => (

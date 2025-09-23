@@ -29,9 +29,13 @@ const HollandResult = () => {
       <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
         {t("نتائج الاستبيان")}
       </h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+        <span className="font-semibold">مقياس هولاند </span>
+      </h2>
       <p className="text-center text-lg text-gray-700 mb-10">
         {t("Report for")} <span className="font-semibold">{name}</span>
       </p>
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Object.entries(scores).map(([skill, { score }]) => {
           const classification = classifyHollandScore(score);
